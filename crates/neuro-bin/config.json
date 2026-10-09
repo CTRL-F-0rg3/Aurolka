@@ -1,0 +1,17 @@
+{
+  "core_identity": "Aurole",
+  "self_evolution_loop": true,
+  "evolution_parameters": {
+    "max_healing_attempts": 5,
+    "sandbox_enabled": true,
+    "auto_assimilation": true
+  },
+  "polyglot_capabilities": {
+    "rust": { "role": "core_integration", "compiler": "cargo" },
+    "zig": { "role": "simd_optimization", "compiler": "zig" },
+    "cpp": { "role": "legacy_parsing", "compiler": "g++" },
+    "beef": { "role": "gui_rendering", "compiler": "bfc" }
+  },
+  "tools_directory": "./tools",
+  "manifests_directory": "./evolution_manifests"
+}

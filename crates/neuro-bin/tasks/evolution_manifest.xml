@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Manifest wygenerowany przez Aurole w celu samorozwoju -->
+<EvolutionTask id="evo_001" type="capability_expansion" priority="critical">
+    
+    <!-- Cel: Model zauważył, że parser C++ jest za wolny dla gigantycznych schematów -->
+    <Goal>Stwórz ultra-szybki moduł parsowania AST w Zig, który zintegruje się z neuro-bin przez C-FFI.</Goal>
+    
+    <!-- Model sam decyduje, jakich języków użyć do hybrydowego projektu -->
+    <ArchitecturePlan>
+        <Component name="zig_parser" lang="zig" role="implementation">
+            <!-- Wykorzystanie Zig dla jego potężnego kompilatora cross-target i SIMD -->
+            <Requirement>Zig must expose C-compatible ABI</Requirement>
+        </Component>
+        <Component name="rust_bridge" lang="rust" role="integration">
+            <!-- Rust bezpiecznie owija wskaźniki z Zig -->
+            <Requirement>Use bindgen or manual FFI wrappers</Requirement>
+        </Component>
+    </ArchitecturePlan>
+
+    <!-- Kryteria sukcesu (Sędzia sprawdzi to przed asymilacją) -->
+    <SuccessCriteria>
+        <Criterion type="compilation">Zig and Rust must compile without warnings</Criterion>
+        <Criterion type="performance">Parsing speed must be > 2x faster than current C++ engine</Criterion>
+        <Criterion type="safety">No memory leaks detected in Rust wrapper</Criterion>
+    </SuccessCriteria>
+
+    <!-- Gdzie model ma zapisać nowe "DNA" (Pliki źródłowe) -->
+    <OutputPaths>
+        <Path component="zig_parser" target="./crates/neuro-bin/cpp/zig_parser.zig" />
+        <Path component="rust_bridge" target="./crates/neuro-bin/src/ffi_zig.rs" />
+    </OutputPaths>
+</EvolutionTask>

@@ -10,6 +10,10 @@ repository.workspace = true
 [dependencies]
 neuro-lib = { workspace = true }
 bytemuck = { workspace = true }
+roxmltree = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+libc = "0.2"
 
 [build-dependencies]
 cc = "1"

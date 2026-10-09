@@ -25,8 +25,13 @@ use neuro_lib::{
 mod asm_decoder;
 mod beef_compiler;
 mod beef_decoder;
+mod compiler_learner;
+mod esc_watcher;
+mod evolution_engine;
+mod machine_introspector;
 mod report;
 mod schema_engine;
+mod schema_generator;
 mod schema_learning;
 mod self_healing_compiler;
 mod task_runner;
@@ -700,7 +705,35 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         Err(error) => report.line(format!("[uczenie] błąd: {error}")),
     }
 
+    // ---------- 7. Autonomiczny samorozwój (generuj → kompiluj → ucz się → ESC) ----------
+    report.line(String::from(
+        "--- samorozwój: autonomiczne generowanie kodu (ESC = stop) ---",
+    ));
+    match evolution_engine::EvolutionEngine::new(env!("CARGO_MANIFEST_DIR")) {
+        Ok(mut engine) => {
+            let config = engine.config();
+            report.line(format!(
+                "[AUTO] Tożsamość: {}; sandbox: {}; prób napraw: {}; asymilacja: {}",
+                config.core_identity,
+                config.evolution_parameters.sandbox_enabled,
+                config.evolution_parameters.max_healing_attempts,
+                config.evolution_parameters.auto_assimilation
+            ));
+            report.line(format!(
+                "[AUTO] Narzędzia: {}; manifesty: {}",
+                config.tools_directory, config.manifests_directory
+            ));
+            for (lang, capability) in &config.polyglot_capabilities {
+                report.line(format!(
+                    "[AUTO]   język {}: {} (kompilator: {})",
+                    lang, capability.role, capability.compiler
+                ));
+            }
+            engine.run_autonomous(&mut report);
+        }
+        Err(error) => report.line(format!("[AUTO] błąd inicjalizacji: {error}")),
+    }
+
     report.line(format!("raport zapisany w {}", report.path().display()));
     Ok(())
 }
-
