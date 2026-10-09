@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Task Cell: Generacja kodu asemblera -->
+<Task id="task_calc_add_01" type="assembly_generation" priority="high">
+    
+    <!-- Architektura docelowa (definiuje słownik opcode'ów w Dekoderze) -->
+    <TargetArch>x86_64</TargetArch>
+    
+    <!-- Cel logiczny -->
+    <Objective>Simple integer addition (RAX = RBX + RCX)</Objective>
+    
+    <!-- Twarde ograniczenia (Constraints) - to one stają się impulsami w macierzy -->
+    <Constraints>
+        <RegisterMapping>
+            <!-- Każdy rejestr to konkretny wektor liczbowy w sektorze GPU -->
+            <Register name="RAX" vector_id="0" role="accumulator" />
+            <Register name="RBX" vector_id="1" role="operand_src_1" />
+            <Register name="RCX" vector_id="2" role="operand_src_2" />
+        </RegisterMapping>
+        
+        <!-- Wymagane operacje (Dekoder musi je rozpoznać w wzorcu wyjściowym) -->
+        <RequiredOpcodes>
+            <Opcode mnemonic="MOV" target_weight="0.8" />
+            <Opcode mnemonic="ADD" target_weight="1.0" />
+            <Opcode mnemonic="SUB" target_weight="1.0" />
+            <Opcode mnemonic="MUL" target_weight="1.0" />
+            <Opcode mnemonic="DIV" target_weight="1.0" />
+            <Opcode mnemonic="LOG" target_weight="0.9" />
+            <Opcode mnemonic="SQRT" target_weight="0.9" />
+            <Opcode mnemonic="RET" target_weight="0.5" />
+        </RequiredOpcodes>
+    </Constraints>
+
+    <!-- Operacje kalkulatora do wygenerowania i wykonania -->
+    <Operations>
+        <Op name="add" />
+        <Op name="sub" />
+        <Op name="mul" />
+        <Op name="div" />
+        <Op name="log" />
+        <Op name="sqrt" />
+    </Operations>
+
+    <!-- Parametry macierzy dla tego zadania -->
+    <MatrixConfig>
+        <!-- W jakich koordynatach macierzy 64x64 (lub 2048x2048) ma się pojawić impuls -->
+        <ImpulseOrigin x="32" y="32" />
+        <DiffusionRate>0.15</DiffusionRate>
+        <MaxIterations>50</MaxIterations>
+    </MatrixConfig>
+
+</Task>

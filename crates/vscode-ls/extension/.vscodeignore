@@ -1,0 +1,4 @@
+# Testy nie wchodzą do paczki — uruchamia się je z repozytorium.
+test/**
+.vscode/**
+.gitignore

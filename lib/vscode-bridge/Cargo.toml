@@ -1,0 +1,24 @@
+[package]
+name = "vscode-bridge"
+description = "Most między Rustem a Visual Studio Code — JSON-RPC/LSP po stdio, kanał zwrotny do hosta i analizator dla Rust, TypeScript i JavaScript."
+keywords = ["vscode", "lsp", "language-server", "bridge", "editor"]
+categories = ["development-tools"]
+readme = "README.md"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+aurum = { workspace = true }
+log = { workspace = true }
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+[lints.rust]
+missing_docs = "warn"
+unsafe_op_in_unsafe_fn = "warn"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }

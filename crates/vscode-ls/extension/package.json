@@ -1,0 +1,113 @@
+{
+  "name": "aurola-vscode-bridge",
+  "displayName": "Aurola — most do Visual Studio Code",
+  "description": "Serwer językowy (Rust, TypeScript, JavaScript) oparty na vscode-bridge, z kanałem zwrotnym do edytora.",
+  "version": "0.1.0",
+  "publisher": "aurola",
+  "license": "MIT OR Apache-2.0",
+  "engines": {
+    "vscode": "^1.85.0",
+    "node": ">=18"
+  },
+  "categories": [
+    "Programming Languages",
+    "Linters"
+  ],
+  "activationEvents": [
+    "onLanguage:rust",
+    "onLanguage:typescript",
+    "onLanguage:javascript"
+  ],
+  "main": "./client.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "rust",
+        "aliases": [
+          "Rust",
+          "rust"
+        ],
+        "extensions": [
+          ".rs"
+        ]
+      },
+      {
+        "id": "typescript",
+        "aliases": [
+          "TypeScript",
+          "ts"
+        ],
+        "extensions": [
+          ".ts",
+          ".tsx"
+        ]
+      },
+      {
+        "id": "javascript",
+        "aliases": [
+          "JavaScript",
+          "js"
+        ],
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".mjs"
+        ]
+      }
+    ],
+    "commands": [
+      {
+        "command": "vscodeBridge.status",
+        "title": "Aurola: stan serwera",
+        "category": "Aurola"
+      },
+      {
+        "command": "vscodeBridge.reanalyzeAll",
+        "title": "Aurola: sprawdź ponownie wszystkie pliki",
+        "category": "Aurola"
+      },
+      {
+        "command": "vscodeBridge.restart",
+        "title": "Aurola: uruchom serwer ponownie",
+        "category": "Aurola"
+      },
+      {
+        "command": "vscodeBridge.showOutput",
+        "title": "Aurola: pokaż kanał wyjściowy",
+        "category": "Aurola"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "vscodeBridge.reanalyzeAll",
+        "key": "ctrl+alt+r",
+        "mac": "cmd+alt+r",
+        "when": "editorTextFocus"
+      }
+    ],
+    "configuration": {
+      "title": "Aurola — most do VS Code",
+      "properties": {
+        "aurola.serverPath": {
+          "type": "string",
+          "default": "",
+          "description": "Ścieżka do vscode-ls. Pusto = szukamy w PATH i w katalogu głównym repozytorium."
+        },
+        "aurola.trace": {
+          "type": "string",
+          "enum": [
+            "off",
+            "messages",
+            "verbose"
+          ],
+          "default": "off",
+          "description": "Poziom śledzenia ruchu po JSON-RPC."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "node --test test/",
+    "lint": "node --check client.js"
+  }
+}

@@ -1,0 +1,15 @@
+# Rust / Cargo — artefakty budowania
+/target
+
+# Wygenerowane raporty (matrix.txt)
+matrix.txt
+
+# Wygenerowane schematyki maszynowe (.sch) i sygnatury
+schemas/
+
+# Materiał referencyjny / silnik gry (nie jest częścią projektu)
+crates/neuro-bin/path/
+
+# Edytory i system
+*.swp
+.DS_Store

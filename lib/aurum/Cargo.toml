@@ -1,0 +1,23 @@
+[package]
+name = "aurum"
+description = "Biblioteka matematyczna i obliczeniowa na GPU oparta na wgpu — wektory, macierze, szum oraz gotowe operacje na compute shaderach."
+keywords = ["math", "gpu", "compute", "wgpu", "wgsl"]
+categories = ["mathematics", "graphics"]
+readme = "README.md"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+repository.workspace = true
+
+[dependencies]
+bytemuck = { workspace = true }
+log = { workspace = true }
+wgpu = { workspace = true }
+
+[lints.rust]
+missing_docs = "warn"
+unsafe_op_in_unsafe_fn = "warn"
+
+[lints.clippy]
+all = { level = "warn", priority = -1 }

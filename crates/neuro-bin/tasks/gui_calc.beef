@@ -1,0 +1,51 @@
+using System;
+using BeefGE;
+
+class Button {
+    string Label;
+    int X;
+    int Y;
+    int Width;
+    int Height;
+}
+
+class CalculatorWindow : Window {
+    Display mDisplay;
+
+    void OnButtonClick(string label) {
+        mDisplay.Value = label;
+    }
+
+    void RenderUI() {
+        AddChild(mDisplay);
+    }
+
+    void Setup() {
+        this.Title = "Kalkulator";
+        this.Size = 640, 490;
+        AddButton("C", 92, 188, 135, 60);
+        AddButton("(", 247, 188, 135, 60);
+        AddButton(")", 402, 188, 135, 60);
+        AddButton("/", 480, 188, 135, 60);
+        AddButton("7", 92, 263, 135, 60);
+        AddButton("8", 247, 263, 135, 60);
+        AddButton("9", 402, 263, 135, 60);
+        AddButton("*", 480, 263, 135, 60);
+        AddButton("4", 92, 338, 135, 60);
+        AddButton("5", 247, 338, 135, 60);
+        AddButton("6", 402, 338, 135, 60);
+        AddButton("-", 480, 338, 135, 60);
+        AddButton("1", 92, 400, 135, 60);
+        AddButton("2", 247, 400, 135, 60);
+        AddButton("3", 402, 400, 135, 60);
+        AddButton("+", 480, 400, 135, 60);
+        AddButton("0", 92, 400, 135, 60);
+        AddButton(".", 247, 400, 135, 60);
+        AddButton("=", 402, 400, 135, 60);
+        AddButton("%", 480, 400, 135, 60);
+    }
+
+    public override void Update() {
+        base.Update();
+    }
+}

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Task id="task_gui_calc_01" type="beef_gui_generation" priority="critical">
+    
+    <TargetLang>Beef</TargetLang>
+    <Objective>Stwórz kalkulator graficzny w Beef, który wygląda dokładnie jak na obrazie referencyjnym.</Objective>
+    
+    <!-- Obraz referencyjny - model będzie go odwzorowywał -->
+    <VisualTarget>
+        <ReferenceImage path="assets/calc_reference.png" width="256" height="256" />
+        <LossThreshold>0.05</LossThreshold> <!-- Model kończy, gdy różnica obrazów < 5% -->
+    </VisualTarget>
+
+    <!-- Wymagane konstrukcje kodu Beef -->
+    <CodeConstraints>
+        <RequiredStructs>
+            <Struct name="CalculatorWindow" />
+            <Struct name="Button" />
+        </RequiredStructs>
+        <RequiredFunctions>
+            <Function name="OnButtonClick" />
+            <Function name="RenderUI" />
+        </RequiredFunctions>
+    </CodeConstraints>
+
+    <MatrixConfig>
+        <ImpulseOrigin x="128" y="128" />
+        <MaxIterations>100</MaxIterations> <!-- Więcej iteracji dla złożonego zadania -->
+    </MatrixConfig>
+</Task>

@@ -1,0 +1,17 @@
+[package]
+name = "pilot"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.82"
+description = "Mini pilot do zarządzania muzyką — okienko z 4 funkcjami, własnymi dekoracjami i przezroczystym tłem."
+license = "MIT OR Apache-2.0"
+
+[dependencies]
+glaz = { workspace = true }
+log = { workspace = true }
+lucide-icons = { workspace = true }
+rodio = { workspace = true }
+
+[[bin]]
+name = "pilot"
+path = "src/main.rs"
